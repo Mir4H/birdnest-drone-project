@@ -1,8 +1,12 @@
 const router = require('express').Router()
-const { Droneowner } = require('../models')
+const { Droneowner, Drone } = require('../models')
 
 router.get('/', async (req, res) => {
-  const droneowners = await Droneowner.findAll()
+  const droneowners = await Droneowner.findAll({
+    include: {
+      model: Drone
+    }
+  })
   res.json(droneowners)
 })
 

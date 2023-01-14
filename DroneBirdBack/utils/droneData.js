@@ -9,7 +9,7 @@ const calculateDistance = (x, y) => {
   const distance =
     Math.sqrt((parseFloat(x) - center) ** 2 + (parseFloat(y) - center) ** 2) /
     1000
-  return distance
+  return distance.toFixed(2)
 }
 
 const calculateViolation = (x, y) => {
