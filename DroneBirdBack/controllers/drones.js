@@ -5,4 +5,7 @@ router.get('/', async (req, res) => {
   const drones = await Drone.findAll()
   res.json(drones)
 })
+
+
 module.exports = router
+
