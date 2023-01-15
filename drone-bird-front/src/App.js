@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import TopBar from './components/TopBar'
 import ListingDrones from './components/ListingDrones'
+import Canvas from './components/Canvas'
+import Grid from '@mui/material/Grid'
 
 const App = () => {
   const [drones, setDrones] = useState()
@@ -15,13 +17,13 @@ const App = () => {
   }
 
   useEffect(() => {
-    getDrone();
+    getDrone()
     const interval = setInterval(() => {
-      console.log("new data")
-      getDrone();
-    }, 30000);
-    return () => clearInterval(interval);
-  }, []);
+      console.log('new data')
+      getDrone()
+    }, 20000)
+    return () => clearInterval(interval)
+  }, [])
 
   if (!drones)
     return (
@@ -32,8 +34,11 @@ const App = () => {
 
   return (
     <div>
-      <TopBar />
-      <ListingDrones drones={drones}/>
+      <TopBar/>
+      <Grid container>
+        <ListingDrones drones={drones} />
+        <Canvas drones={drones} />
+      </Grid>
     </div>
   )
 }
