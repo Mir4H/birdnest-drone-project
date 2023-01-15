@@ -13,9 +13,15 @@ const App = () => {
       console.log(error)
     }
   }
+
   useEffect(() => {
-    getDrone()
-  }, [])
+    getDrone();
+    const interval = setInterval(() => {
+      console.log("new data")
+      getDrone();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (!drones)
     return (

@@ -14,7 +14,7 @@ const ListingDrones = ({drones}) => {
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       {drones.map((item) => (
-        <>
+        <div key={item.id}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: blue[400], fontSize: 18 }}>
@@ -42,7 +42,7 @@ const ListingDrones = ({drones}) => {
             />
           </ListItem>
           <Divider variant="inset" component="li" />
-        </>
+        </div>
       ))}
     </List>
   )
