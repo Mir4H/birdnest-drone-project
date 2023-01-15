@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import TopBar from './components/TopBar'
+import ListingDrones from './components/ListingDrones'
 
 const App = () => {
   const [drones, setDrones] = useState()
@@ -26,14 +27,7 @@ const App = () => {
   return (
     <div>
       <TopBar />
-      <ul>
-        {drones.map((item) => (
-          <>
-          <li>{item.serialNumber} | {item.droneowner.firstName} {item.droneowner.lastName}</li>
-          <li>{item.droneowner.phoneNumber} | {item.droneowner.email} | {item.distance}</li>
-          </>
-        ))}
-      </ul>
+      <ListingDrones drones={drones}/>
     </div>
   )
 }
