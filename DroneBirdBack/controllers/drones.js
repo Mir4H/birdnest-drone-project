@@ -13,11 +13,10 @@ router.get('/', async (req, res) => {
     group: ['serial_number'],
     where: {
       timeSeen: {
-        [Op.gt]: new Date(Date.now() - 60 * 10 * 1000)
+        [Op.gt]: new Date(Date.now() - (60 * 10 * 1000))
       }
     }
   })
-
   const closestDrones = await Promise.all(
     allDrones.map(async (drone) => {
       const serial = drone.serial_number

@@ -22,7 +22,7 @@ const saveDrones = async (droneData) => {
       try {
         const pilot = await Droneowner.create({
           ...data,
-          droneSerial: droneData.serialNumber
+          droneSerial: droneData.serialNumber,
         })
         await Drone.create({
           ...droneData,

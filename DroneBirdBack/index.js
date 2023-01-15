@@ -4,9 +4,10 @@ require('express-async-errors')
 const app = express()
 const { PORT } = require('./utils/config')
 const { connectToDatabase } = require('./utils/db')
-
 const middleware = require('./utils/middleware')
 const { getDroneData } = require('./utils/droneData')
+const { deleteDrones, deleteDroneOwners } = require('./utils/deleteOldData')
+
 const dronesRouter = require('./controllers/drones')
 const droneownersRouter = require('./controllers/droneowners')
 
@@ -18,6 +19,11 @@ app.use('/api/droneowners', droneownersRouter)
 cron.schedule('*/2 * * * * *', () => {
   console.log('checking drone data every 2 seconds')
   getDroneData()
+})
+
+cron.schedule('*/20 * * * *', async () => {
+  await deleteDrones()
+  await deleteDroneOwners()
 })
 
 app.use(middleware.unknownEndpoint)

@@ -67,10 +67,6 @@ module.exports = {
       type: DataTypes.INTEGER,
       references: { model: 'droneowners', key: 'id' }
     })
-    await queryInterface.addColumn('droneowners', 'drone_id', {
-      type: DataTypes.INTEGER,
-      references: { model: 'drones', key: 'id' }
-    })
   },
   down: async () => {
     await sequelize.query('DROP TABLE IF EXISTS "droneowners" CASCADE;')
