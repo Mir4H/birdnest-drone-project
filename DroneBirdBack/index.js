@@ -11,6 +11,7 @@ const { deleteDrones, deleteDroneOwners } = require('./utils/deleteOldData')
 const dronesRouter = require('./controllers/drones')
 const droneownersRouter = require('./controllers/droneowners')
 
+app.use(express.static('build'))
 app.use(express.json())
 
 app.use('/api/drones', dronesRouter)
