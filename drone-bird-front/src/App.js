@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import TopBar from './components/TopBar'
 
 const App = () => {
   const [drones, setDrones] = useState()
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <div>
+      <TopBar/>
       <h1>Got the data!</h1>
       <p>{drones[0].serialNumber}</p>
     </div>
