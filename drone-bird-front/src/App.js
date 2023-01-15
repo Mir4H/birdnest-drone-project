@@ -25,9 +25,15 @@ const App = () => {
 
   return (
     <div>
-      <TopBar/>
-      <h1>Got the data!</h1>
-      <p>{drones[0].serialNumber}</p>
+      <TopBar />
+      <ul>
+        {drones.map((item) => (
+          <>
+          <li>{item.serialNumber} | {item.droneowner.firstName} {item.droneowner.lastName}</li>
+          <li>{item.droneowner.phoneNumber} | {item.droneowner.email} | {item.distance}</li>
+          </>
+        ))}
+      </ul>
     </div>
   )
 }
