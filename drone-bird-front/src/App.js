@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div>
-      <TopBar/>
+      <TopBar />
       <Grid container>
         <ListingDrones drones={drones} />
         <Canvas drones={drones} />

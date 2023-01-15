@@ -10,6 +10,7 @@ import {
   Grid
 } from '@mui/material'
 import { blue } from '@mui/material/colors'
+import moment from 'moment'
 
 const ListingDrones = ({ drones }) => {
   return (
@@ -37,7 +38,9 @@ const ListingDrones = ({ drones }) => {
                       Contacts: {item.droneowner.phoneNumber} | {item.droneowner.email}
                     </Typography>
                     <br />{' '}
-                    {`Drone's closest distance to the nest: ${item.distance} meters, at ${item.timeSeen}}`}
+                    {`Drone's closest distance to the nest: ${item.distance} meters, at ${moment(
+                      item.timeSeen
+                    ).format('HH:mm')}`}
                   </React.Fragment>
                 }
               />

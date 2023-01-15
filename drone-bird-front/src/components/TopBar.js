@@ -7,7 +7,7 @@ const TopBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Drones that disturb the bird's peace
+            Drones that disturbed the bird's peace in the last 10 minutes
           </Typography>
           <FlutterDashIcon fontSize="large" />
         </Toolbar>

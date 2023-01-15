@@ -81,9 +81,9 @@ const Canvas = ({ drones }) => {
   }, [drones])
 
   return (
-    <Box component={Grid} item sm={12} lg={6} >
-      <Card style={{ display: 'flex', justifyContent: 'center'}}>
-        <canvas width={550} height={550} ref={canvasRef}/>
+    <Box component={Grid} item sm={12} lg={6}>
+      <Card style={{ display: 'flex', justifyContent: 'center' }}>
+        <canvas width={550} height={550} ref={canvasRef} />
       </Card>
     </Box>
   )
