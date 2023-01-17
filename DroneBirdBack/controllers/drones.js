@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     group: ['drone_id'],
     where: {
       timeSeen: {
-        [Op.gt]: new Date(Date.now() - (60 * 10 * 1000))
+        [Op.gt]: new Date(Date.now() - 60 * 10 * 1000)
       }
     }
   })
@@ -26,15 +26,17 @@ router.get('/', async (req, res) => {
         },
         raw: true,
         nest: true,
-        include: [{
-          model: Droneowner,
-        },{
-          model: Droneposition,
-          where: {
-            distance: drone.min_distance
+        include: [
+          {
+            model: Droneowner
+          },
+          {
+            model: Droneposition,
+            where: {
+              distance: drone.min_distance
+            }
           }
-        }]
-
+        ]
       })
     })
   )

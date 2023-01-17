@@ -6,7 +6,7 @@ const deleteDrones = async () => {
   try {
     await Drone.destroy({
       where: {
-        lastSeen: { [Op.lt]: new Date(Date.now() - (60 * 10 * 1000)) }
+        lastSeen: { [Op.lt]: new Date(Date.now() - 61 * 10 * 1000) }
       }
     })
   } catch (error) {

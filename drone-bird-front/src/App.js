@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 
 const App = () => {
   const [drones, setDrones] = useState()
+
   const getDrone = async () => {
     try {
       const droneData = await axios.get('/api/drones')
@@ -19,18 +20,18 @@ const App = () => {
   useEffect(() => {
     getDrone()
     const interval = setInterval(() => {
-      console.log('new data')
       getDrone()
     }, 20000)
     return () => clearInterval(interval)
   }, [])
 
-  if (!drones)
+  if (!drones) {
     return (
       <div>
         <h3>Loading...</h3>
       </div>
     )
+  }
 
   return (
     <div>

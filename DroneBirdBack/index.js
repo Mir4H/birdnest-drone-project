@@ -2,17 +2,17 @@ const cron = require('node-cron')
 const express = require('express')
 require('express-async-errors')
 const app = express()
+const cors = require('cors')
 const { PORT } = require('./utils/config')
 const { connectToDatabase } = require('./utils/db')
 const middleware = require('./utils/middleware')
 const { getDroneData } = require('./utils/droneData')
-const { deleteDrones } = require('./utils/deleteOldData')
-
 const dronesRouter = require('./controllers/drones')
+const { deleteDrones } = require('./utils/deleteOldData')
 
 //app.use(express.static('build'))
 app.use(express.json())
-
+app.use(cors())
 app.use('/api/drones', dronesRouter)
 
 cron.schedule('*/2 * * * * *', () => {

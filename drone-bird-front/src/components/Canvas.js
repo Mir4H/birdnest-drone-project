@@ -52,15 +52,15 @@ const Canvas = ({ drones }) => {
     ctx.stroke()
 
     drones.forEach((item) => {
-      const initials = `${item.droneowner.firstName.charAt(0)}${item.droneowner.lastName.charAt(0)}`
+      const initials = `${item?.droneowner?.firstName?.charAt(0)}${item?.droneowner?.lastName?.charAt(0)}`
 
       //Draw drone
       ctx.lineWidth = 0.6
       ctx.beginPath()
       ctx.strokeStyle = 'black'
       ctx.arc(
-        (item.dronepositions.positionX * 2.5) / 1000 - 350,
-        900 - (item.dronepositions.positionY * 2.5) / 1000,
+        (item?.dronepositions?.positionX * 2.5) / 1000 - 350,
+        900 - (item?.dronepositions?.positionY * 2.5) / 1000,
         14,
         0,
         2 * Math.PI
@@ -73,8 +73,8 @@ const Canvas = ({ drones }) => {
       ctx.fillStyle = '#303030'
       ctx.fillText(
         initials,
-        (item.dronepositions.positionX * 2.5) / 1000 - 350,
-        904 - (item.dronepositions.positionY * 2.5) / 1000
+        (item?.dronepositions?.positionX * 2.5) / 1000 - 350,
+        904 - (item?.dronepositions?.positionY * 2.5) / 1000
       )
       ctx.stroke()
     })

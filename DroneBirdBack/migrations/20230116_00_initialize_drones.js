@@ -21,5 +21,5 @@ module.exports = {
   },
   down: async () => {
     await sequelize.query('DROP TABLE IF EXISTS "drones" CASCADE;')
-  },
+  }
 }
