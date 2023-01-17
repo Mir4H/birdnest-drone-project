@@ -1,40 +1,44 @@
 const router = require('express').Router()
-const { Drone, Droneowner } = require('../models')
+const { Drone, Droneowner, Droneposition } = require('../models')
 const { sequelize } = require('../utils/db')
 const { Op } = require('sequelize')
 
 router.get('/', async (req, res) => {
-  const allDrones = await Drone.findAll({
+  const dronePositions = await Droneposition.findAll({
     attributes: [
-      'serial_number',
+      'drone_id',
       [sequelize.fn('MIN', sequelize.col('distance')), 'min_distance']
     ],
     raw: true,
-    group: ['serial_number'],
+    group: ['drone_id'],
     where: {
       timeSeen: {
         [Op.gt]: new Date(Date.now() - (60 * 10 * 1000))
       }
     }
   })
+
   const closestDrones = await Promise.all(
-    allDrones.map(async (drone) => {
-      const serial = drone.serial_number
-      const distance = drone.min_distance
+    dronePositions.map(async (drone) => {
       return await Drone.findOne({
         where: {
-          [Op.and]: [{ serialNumber: serial }, { distance: distance }]
+          [Op.and]: [{ id: drone.drone_id }]
         },
         raw: true,
         nest: true,
-        attributes: { exclude: ['droneownerId'] },
-        include: {
+        include: [{
           model: Droneowner,
-          attributes: { exclude: ['droneSerial', 'createdAt', 'updatedAt'] }
-        }
+        },{
+          model: Droneposition,
+          where: {
+            distance: drone.min_distance
+          }
+        }]
+
       })
     })
   )
+
   res.json(closestDrones)
 })
 

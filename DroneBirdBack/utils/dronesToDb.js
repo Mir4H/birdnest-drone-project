@@ -1,37 +1,36 @@
-const { Drone, Droneowner } = require('../models')
+const { Drone, Droneowner, Droneposition } = require('../models')
 const axios = require('axios')
 
 const saveDrones = async (droneData) => {
-  const droneowner = await Droneowner.findOne({
-    where: { droneSerial: droneData.serialNumber }
-  })
-  if (droneowner) {
-    try {
-      await Drone.create({
-        ...droneData,
-        droneownerId: droneowner.id
-      })
-    } catch (error) {
-      console.error(error.message)
+  const [drone, created] = await Drone.findOrCreate({
+    where: { serialNumber: droneData.serialNumber },
+    defaults: {
+      lastSeen: droneData.timeSeen
     }
-  } else {
+  })
+  await Droneposition.create({
+    raw: true,
+    ...droneData,
+    droneId: drone.id
+  })
+
+  if (created) {
     const { data } = await axios.get(
       `https://assignments.reaktor.com/birdnest/pilots/${droneData.serialNumber}`
     )
     if (data) {
       try {
-        const pilot = await Droneowner.create({
+        await Droneowner.create({
           ...data,
-          droneSerial: droneData.serialNumber,
-        })
-        await Drone.create({
-          ...droneData,
-          droneownerId: pilot.id
+          droneId: drone.id
         })
       } catch (error) {
         console.error(error.message)
       }
     }
+  } else {
+    drone.lastSeen = droneData.timeSeen
+    await drone.save()
   }
 }
 

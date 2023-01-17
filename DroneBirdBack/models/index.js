@@ -1,10 +1,17 @@
 const Drone = require('./drone')
 const Droneowner = require('./droneowner')
+const Droneposition = require('./dronepositions')
 
-Droneowner.hasMany(Drone)
-Drone.belongsTo(Droneowner)
+Drone.hasOne(Droneowner, {
+  onDelete: 'CASCADE'
+})
+Drone.hasMany(Droneposition, {
+  onDelete: 'CASCADE'
+})
+Droneposition.belongsTo(Drone)
 
 module.exports = {
   Drone,
-  Droneowner
+  Droneowner,
+  Droneposition
 }

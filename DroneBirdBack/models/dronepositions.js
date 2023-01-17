@@ -1,30 +1,29 @@
 const { Model, DataTypes } = require('sequelize')
-
 const { sequelize } = require('../utils/db')
 
-class Droneowner extends Model {}
+class Droneposition extends Model {}
 
-Droneowner.init(
+Droneposition.init(
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    firstName: {
-      type: DataTypes.TEXT,
+    timeSeen: {
+      type: DataTypes.DATE,
       allowNull: false
     },
-    lastName: {
-      type: DataTypes.TEXT,
+    positionX: {
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
-    phoneNumber: {
-      type: DataTypes.TEXT,
+    positionY: {
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
-    email: {
-      type: DataTypes.TEXT,
+    distance: {
+      type: DataTypes.DECIMAL,
       allowNull: false
     }
   },
@@ -32,8 +31,8 @@ Droneowner.init(
     sequelize,
     underscored: true,
     timestamps: false,
-    modelName: 'droneowner'
+    modelName: 'droneposition'
   }
 )
 
-module.exports = Droneowner
+module.exports = Droneposition
