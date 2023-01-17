@@ -38,8 +38,8 @@ const ListingDrones = ({ drones }) => {
                       Contacts: {item.droneowner.phoneNumber} | {item.droneowner.email}
                     </Typography>
                     <br />{' '}
-                    {`Drone's closest distance to the nest: ${item.distance} meters, at ${moment(
-                      item.timeSeen
+                    {`Drone's closest distance to the nest: ${item.dronepositions.distance} meters, at ${moment(
+                      item.dronepositions.timeSeen
                     ).format('HH:mm')}`}
                   </React.Fragment>
                 }

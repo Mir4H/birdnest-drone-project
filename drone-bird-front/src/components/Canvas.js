@@ -59,8 +59,8 @@ const Canvas = ({ drones }) => {
       ctx.beginPath()
       ctx.strokeStyle = 'black'
       ctx.arc(
-        (item.positionX * 2.5) / 1000 - 350,
-        900 - (item.positionY * 2.5) / 1000,
+        (item.dronepositions.positionX * 2.5) / 1000 - 350,
+        900 - (item.dronepositions.positionY * 2.5) / 1000,
         14,
         0,
         2 * Math.PI
@@ -73,8 +73,8 @@ const Canvas = ({ drones }) => {
       ctx.fillStyle = '#303030'
       ctx.fillText(
         initials,
-        (item.positionX * 2.5) / 1000 - 350,
-        904 - (item.positionY * 2.5) / 1000
+        (item.dronepositions.positionX * 2.5) / 1000 - 350,
+        904 - (item.dronepositions.positionY * 2.5) / 1000
       )
       ctx.stroke()
     })
