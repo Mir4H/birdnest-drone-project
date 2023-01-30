@@ -13,5 +13,5 @@ The frontend shows a frequently updated list of all drones that have violated th
 If you would like to have this project running on your computer you should check the readme files of the backend and frontend directories for instructions. 
 
 ### Notes
-The Canvas is not responsive at the moment, therefore the mobile user experience needs improving. 
+The Canvas is not responsive at the moment, therefore the mobile user experience needs improving. <br/>
 Thanks to Reaktor for the project idea and data.
