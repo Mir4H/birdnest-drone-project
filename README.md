@@ -14,3 +14,4 @@ If you would like to have this project running on your computer you should check
 
 ### Notes
 The Canvas is not responsive at the moment, therefore the mobile user experience needs improving. 
+Thanks to Reaktor for the project idea and data.
